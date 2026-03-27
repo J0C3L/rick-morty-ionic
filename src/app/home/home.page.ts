@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Para el *ngFor
 import { RickMortyService } from '../services/rick-morty';
 
-// 1. Agregamos TODAS las etiquetas que estás usando en el HTML
+
 import { 
   IonHeader, IonToolbar, IonTitle, IonContent, 
   IonGrid, IonRow, IonCol, IonCard, IonCardHeader, 
