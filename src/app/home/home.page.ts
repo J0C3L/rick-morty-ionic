@@ -1,12 +1,35 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Para el *ngFor
+import { RickMortyService } from '../services/rick-morty';
+
+// 1. Agregamos TODAS las etiquetas que estás usando en el HTML
+import { 
+  IonHeader, IonToolbar, IonTitle, IonContent, 
+  IonGrid, IonRow, IonCol, IonCard, IonCardHeader, 
+  IonCardTitle, IonCardSubtitle, IonCardContent 
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  standalone: true,
+  // 2. Aquí también debemos declararlas
+  imports: [
+    CommonModule,
+    IonHeader, IonToolbar, IonTitle, IonContent, 
+    IonGrid, IonRow, IonCol, IonCard, IonCardHeader, 
+    IonCardTitle, IonCardSubtitle, IonCardContent
+  ],
 })
-export class HomePage {
-  constructor() {}
+export class HomePage implements OnInit {
+  characters: any[] = [];
+
+  constructor(private rmService: RickMortyService) {}
+
+  ngOnInit() {
+    this.rmService.getCharacters().subscribe((res: any) => {
+      this.characters = res.results;
+    });
+  }
 }
